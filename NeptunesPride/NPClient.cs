@@ -84,27 +84,22 @@ namespace NeptunesPride
         private static LoginResult ParseLoginResult(string result)
         {
             LoginResult loginResult;
-            try
+            JArray resultObject = JArray.Parse(result);
+            string resultMessage = resultObject.First.ToString();
+
+            if (resultMessage == "meta:login_success")
+                loginResult = LoginResult.Success;
+            else
             {
-                JArray resultObject = JArray.Parse(result);
-                string resultMessage = resultObject.First.ToString();
-                if (resultMessage == "meta:login_success")
-                    loginResult = LoginResult.Success;
+                string errorMessage = resultObject.Last.ToString();
+                if (errorMessage == "login_wrong_password")
+                    loginResult = LoginResult.WrongPassword;
+                else if (errorMessage == "account_not_found")
+                    loginResult = LoginResult.AccountNotFound;
                 else
-                {
-                    string errorMessage = resultObject.Last.ToString();
-                    if (errorMessage == "login_wrong_password")
-                        loginResult = LoginResult.WrongPassword;
-                    else if (errorMessage == "account_not_found")
-                        loginResult = LoginResult.AccountNotFound;
-                    else
-                        throw new NotImplementedException();
-                }
+                    loginResult = LoginResult.Unknown;
             }
-            catch (Exception)
-            {
-                loginResult = LoginResult.Unknown;
-            }
+
             return loginResult;
         }
 
