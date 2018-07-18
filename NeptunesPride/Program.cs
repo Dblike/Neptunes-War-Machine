@@ -72,9 +72,6 @@ namespace NeptunesPride
 
                 switch (result)
                 {
-                    case LoginResult.Unknown:
-                        Console.WriteLine("Unknown error has occurred while attempting login");
-                        break;
                     case LoginResult.Success:
                         Console.WriteLine("Login Successful!");
                         return;
@@ -83,6 +80,9 @@ namespace NeptunesPride
                         break;
                     case LoginResult.WrongPassword:
                         Console.WriteLine("Wrong password");
+                        break;
+                    case LoginResult.Unknown:
+                        Console.WriteLine("Unknown error has occurred while attempting login");
                         break;
                 }
                 Console.WriteLine();

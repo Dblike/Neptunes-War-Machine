@@ -53,8 +53,6 @@ namespace NeptunesWarMachine.Entities.Report
         public int Regard { get; set; }
         [JsonProperty("karma_to_give")]
         public int KarmaToGive { get; set; }
-        [JsonProperty("ready")]
-        public bool Ready { get; set; }
     }
 
     public class Research
