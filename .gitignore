@@ -40,6 +40,5 @@ Thumbs.db
 # Project Specific Files #
 ##########################
 Todo.txt
-/NeptunesPride/obj
-/NeptunesWarMachine.UnitTests/bin
-/NeptunesWarMachine.UnitTests/obj
+*/bin
+*/obj
