@@ -21,6 +21,8 @@ namespace NeptunesWarMachine.Entities.Report
         public int Avatar { get; set; }
 
         //Empire Information
+        [JsonProperty("cash")]
+        public int Cash { get; set; }
         [JsonProperty("total_stars")]
         public int TotalStars { get; set; }
         [JsonProperty("total_fleets")]
@@ -34,7 +36,9 @@ namespace NeptunesWarMachine.Entities.Report
         [JsonProperty("total_science")]
         public int TotalScience { get; set; }
         [JsonConverter(typeof(ResearchConverter))]
-        public List<Research> Tech { get; set; }        
+        public List<Research> Tech { get; set; }    
+        [JsonProperty("stars_abandoned")]
+        public int StarsAbandoned { get; set; }
         
         //Meta-information        
         [JsonProperty("ai")]
@@ -49,6 +53,8 @@ namespace NeptunesWarMachine.Entities.Report
         public int Regard { get; set; }
         [JsonProperty("karma_to_give")]
         public int KarmaToGive { get; set; }
+        [JsonProperty("ready")]
+        public bool Ready { get; set; }
     }
 
     public class Research
@@ -56,6 +62,11 @@ namespace NeptunesWarMachine.Entities.Report
         public string Name { get; set; }
         public float Value { get; set; }
         public int Level { get; set; }
+        [JsonProperty("research")]
+        public double Sv { get; set; }
+        public int ResearchProgress { get; set; }
+        public double Bv { get; set; }
+        public double Brr { get; set; }
     }
 
     public class PlayerConverter : CustomJsonConverter<PlayerInfo>
