@@ -13,7 +13,11 @@ namespace NeptunesPride
 {
     public class Program
     {
-        static FullUniverseReport currentUniverse;
+        private static FullUniverseReport currentUniverse;
+        private static readonly string[] ActionList = new string[]
+        {
+            "Display Universe Information"
+        };
 
         static void Main(string[] args)
         {
@@ -29,14 +33,13 @@ namespace NeptunesPride
 
         static void MainLoop()
         {
-            const int ACTION_COUNT = 1;
             PromptGameSelection();
 
             while (true)
             {
                 PrintActions();
                 Console.Write("Select an action: ");
-                while (!int.TryParse(Console.ReadLine(), out int actionIdx) || actionIdx < 0 || actionIdx > ACTION_COUNT)
+                while (!int.TryParse(Console.ReadLine(), out int actionIdx) || actionIdx < 0 || actionIdx > ActionList.Length)
                 {
                     Console.WriteLine("Invalid Selection. Try again: ");
                 }
@@ -45,7 +48,8 @@ namespace NeptunesPride
 
         static void PrintActions()
         {
-            Console.WriteLine("0. Display Universe Information");
+            for (int actionIdx = 0; actionIdx < ActionList.Length; actionIdx++) 
+                Console.WriteLine($"{actionIdx}. {ActionList[actionIdx]}");
         }
 
         static void PrintWelcomeBanner()
